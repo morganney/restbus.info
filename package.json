@@ -1,0 +1,10 @@
+{
+  "name": "NextBusRESTfulAPI",
+  "description": "Access the NextBus Inc. public XML feed through a RESTful JSON API running on localhost.",
+  "version": "0.0.1",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.8",
+    "xml2js": "0.4.1"
+  }
+}

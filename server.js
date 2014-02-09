@@ -27,10 +27,10 @@ proxy.get('/agencies', api.agencies.list);
 proxy.get('/agencies/:agency', api.agencies.get);
 proxy.get('/agencies/:agency/routes', api.routes.list);
 proxy.get('/agencies/:agency/routes/:route', api.routes.get);
-//proxy.get('/agencies/:agency/routes/:route/stop/:stop/predictions', api.predictions.get);
+proxy.get('/agencies/:agency/routes/:route/stops/:stop/predictions', api.predictions.get);
 //proxy.get('/agencies/:agency/stop/:code/predictions', api.predictions.forCode);
 //proxy.get('/agencies/:agency/tuples/:tuples/predictions', api.predictions.list);
-//proxy.get('/location/:latlng/predictions', api.predictions.byLoc);
+//proxy.get('/location/:latlng/predictions', api.predictions.byLoc); #maybe not worth it since parsing HTML is req!
 
 // Start server
 proxy.listen('3535');

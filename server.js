@@ -22,15 +22,18 @@ proxy.use(function(err, req, res, next) {
   res.json(500, utils.errors.get(500, 'The server encountered an unexpected condition: ' + err.message));
 });
 
-// Routing
+// Routing (only GET requests supported)
 proxy.get('/agencies', api.agencies.list);
 proxy.get('/agencies/:agency', api.agencies.get);
 proxy.get('/agencies/:agency/routes', api.routes.list);
 proxy.get('/agencies/:agency/routes/:route', api.routes.get);
 proxy.get('/agencies/:agency/routes/:route/stops/:stop/predictions', api.predictions.get);
 proxy.get('/agencies/:agency/stops/:code/predictions', api.predictions.list);
-//proxy.get('/agencies/:agency/tuples/:tuples/predictions', api.predictions.tuples);
+proxy.get('/agencies/:agency/tuples/:tuples/predictions', api.predictions.tuples);
 //proxy.get('/location/:latlng/predictions', api.predictions.location); #maybe not worth it since parsing HTML is req!
+//proxy.get('/agencies/:agency/vehicles', api.vehicles.list);
+//proxy.get('/agencies/:agency/vehicles/:vehicle', api.vehicles.get);
+//proxy.get('/agencies/:agency/routes/:route/vehicles', api.vehicles.routelist);
 
 // Start server
 proxy.listen('3535');

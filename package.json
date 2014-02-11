@@ -1,27 +1,28 @@
 {
-  "name": "nextbus-restful-json-proxy",
-  "description": "A local RESTful JSON proxy for accessing the NextBus Inc. public XML feed.",
+  "name": "restbus",
+  "description": "RESTful JSON proxy for the NextBus Inc. public XML feed.",
   "version": "0.0.1",
   "main": "index",
   "dependencies": {
     "express": "3.4.8",
-    "xml2js": "0.4.1"
+    "xml2js": "0.4.1",
+    "cheerio": "0.13.1"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/morganney/nextbus-restful-json-proxy.git"
+    "url": "https://github.com/morganney/restbus.git"
   },
-  "homepage": "http://busbot.info/api/",
+  "homepage": "http://restbus.info",
   "keywords": [
     "nextbus",
-    "NextBus",
+    "api",
     "rest",
     "json",
     "proxy",
     "xml"
   ],
   "bugs": {
-    "url": "https://github.com/morganney/nextbus-restful-json-proxy/issues"
+    "url": "https://github.com/morganney/restbus/issues"
   },
   "author": {
     "name": "Morgan Ney <morganney@gmail.com>",

@@ -41,11 +41,12 @@ proxy.get('/agencies/:agency/routes/:route/vehicles', api.vehicles.routelist);
 proxy.get('/agencies/:agency/stops/:code/predictions', api.predictions.list);
 proxy.get('/agencies/:agency/tuples/:tuples/predictions', api.predictions.tuples);
 proxy.get('/agencies/:agency/routes/:route/stops/:stop/predictions', api.predictions.get);
+proxy.get('/locations/:latlon/predictions', api.predictions.location);
 /**
- * Experimental: proxy.get('/location/:latlon/predictions', api.predictions.location);
+ * Experimental: proxy.get('/locations/:latlon/predictions', api.predictions.location);
  *
  * Maybe not worth it since parsing HTML is required.
  */
 
-// Return an object with a 'listen' method to start the proxy on given.
+// Return an object with a 'listen' method to start the proxy on given port.
 module.exports = { listen: function(port) { proxy.listen(port || '3535'); } };

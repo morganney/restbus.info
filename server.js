@@ -3,8 +3,20 @@ var express = require('express'),
     utils = require('./lib/utils'),
     proxy = express();
 
-// Middleware
-proxy.use(express.logger('dev'));
+// Configuration & Middleware
+if(proxy.get('env') === 'development') {
+  proxy.use(express.logger('dev'));
+  proxy.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.json(500, utils.errors.get(500, 'The server encountered an unexpected condition: ' + err.message));
+  });
+} else {
+  proxy.use(express.logger());
+  proxy.use(function(err, req, res, next) {
+    res.json(500, utils.errors.get(500, 'The server encountered an unexpected condition: ' + err.message));
+  });
+}
+
 proxy.use(function(req, res, next) {
   res.set({// No client caching
     'Expires': 'Sat, 01 Jan 2000 08:00:00 GMT',
@@ -15,11 +27,7 @@ proxy.use(function(req, res, next) {
 });
 proxy.use(proxy.router);
 proxy.use(function(req, res, next) {
-  res.json(404, utils.errors.get(404, 'The requested URI can not be found on this server.'))
-});
-proxy.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.json(500, utils.errors.get(500, 'The server encountered an unexpected condition: ' + err.message));
+  res.json(404, utils.errors.get(404, 'The requested URI can not be found on this server.'));
 });
 
 // Routing (only GET requests supported)
@@ -27,13 +35,17 @@ proxy.get('/agencies', api.agencies.list);
 proxy.get('/agencies/:agency', api.agencies.get);
 proxy.get('/agencies/:agency/routes', api.routes.list);
 proxy.get('/agencies/:agency/routes/:route', api.routes.get);
-proxy.get('/agencies/:agency/routes/:route/stops/:stop/predictions', api.predictions.get);
+proxy.get('/agencies/:agency/vehicles', api.vehicles.list);
+proxy.get('/agencies/:agency/vehicles/:vehicle', api.vehicles.get);
+proxy.get('/agencies/:agency/routes/:route/vehicles', api.vehicles.routelist);
 proxy.get('/agencies/:agency/stops/:code/predictions', api.predictions.list);
 proxy.get('/agencies/:agency/tuples/:tuples/predictions', api.predictions.tuples);
-//proxy.get('/location/:latlng/predictions', api.predictions.location); #maybe not worth it since parsing HTML is req!
-//proxy.get('/agencies/:agency/vehicles', api.vehicles.list);
-//proxy.get('/agencies/:agency/vehicles/:vehicle', api.vehicles.get);
-//proxy.get('/agencies/:agency/routes/:route/vehicles', api.vehicles.routelist);
+proxy.get('/agencies/:agency/routes/:route/stops/:stop/predictions', api.predictions.get);
+/**
+ * Experimental: proxy.get('/location/:latlon/predictions', api.predictions.location);
+ *
+ * Maybe not worth it since parsing HTML is required.
+ */
 
-// Start server
-proxy.listen('3535');
+// Return an object with a 'listen' method to start the proxy on given.
+module.exports = { listen: function(port) { proxy.listen(port || '3535'); } };

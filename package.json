@@ -1,0 +1,11 @@
+{
+ "name": "restbus.info",
+  "version": "0.0.0",
+  "description": "The restbus.info website.",
+  "private": true,
+  "dependencies": {
+    "express": "3.4.8",
+    "restbus": "*",
+    "jade": "1.1.5"
+  }
+}

@@ -5,7 +5,7 @@ mixin ie(condition)
 doctype
 html(lang='en')
   head
-    title restbus | RESTful JSON NextBus Proxy
+    title restbus | RESTful JSON API for NextBus
     meta(charset='utf-8')
     meta(name='viewport', content='width=device-width, initial-scale=1')
     link(rel='stylesheet', href='http://yui.yahooapis.com/pure/0.4.2/pure-min.css')
@@ -14,26 +14,34 @@ html(lang='en')
     link(rel='stylesheet', href='/public/css/layouts/blog-old-ie.css')
     <![endif]-->
     <!--[if gt IE 8]><!-->
-    link(rel='stylesheet', href='/public/css/main-grid.css')
-    link(rel='stylesheet', href='/public/css/layouts/blog.css')
+    link(rel='stylesheet', href='/public/css/main-grid.min.css')
+    link(rel='stylesheet', href='/public/css/layouts/blog.min.css')
     <!--<![endif]-->
+    link(rel='stylesheet', href='/public/css/custom.css')
   body
     #layout.pure-g
       div(class='sidebar pure-u-1 pure-u-med-1-4')
         .header
-          hgroup
+          div
             h1.brand-title restbus
-            h2.brand-tagline A RESTful JSON NextBus Proxy
+            h2.brand-tagline.
+              A RESTful JSON API for the
+              <a href='http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf'>NextBus XML feed</a>.
+          p: code npm install restbus
           nav.nav
             ul.nav-list
-              li.nav-item: a.pure-button Demo
-              li.nav-item: a.pure-button View on GitHub
+              li.nav-item: a.pure-button(href='/api/agencies') Demo
+              li.nav-item: a.pure-button(href='https://github.com/morganney/restbus') GitHub
       div(class='content pure-u-1 pure-u-med-3-4')
         div
           block page
           .footer
             div(class='pure-menu pure-menu-horizontal pure-menu-open')
               ul
-                li: a foo
-                li: a bar
-                li: a baz
+                li: a(href='http://opensource.org/licenses/MIT') MIT
+                li: a(href='https://github.com/morganney/restbus/issues') issues
+                li: a(href='https://github.com/morganney/restbus') source
+            div(class='pure-menu pure-menu-horizontal pure-menu-open rbcopy')
+              ul
+                li &copy; <a href='http://bizzybytes.com'>Morgan Ney</a> 2014
+    script(src='/public/js/test.js')

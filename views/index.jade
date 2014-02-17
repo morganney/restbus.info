@@ -4,10 +4,10 @@ block page
   #shell
     .info
       p.
-        You have to stat the <code>restbus</code> server before you can use the <code>restbus</code>
-        <a href='#api'>API</a>. See <a href='#usage'>Usage</a> for how.
-    h3#usage Usage
-    h4: code listen([port],[callback])
+        You have to start the <code>restbus</code> <a href='#server'>server</a> before you can use the
+        <code>restbus</code> <a href='#api'>API</a>. See <a href='#listen'><code>listen()</code></a> for details.
+    h3#server <code>restbus</code> Server
+    h4#listen: code listen([port],[callback])
     p.
       Start the <code>restbus</code> server passing an optional <code>port</code> and/or listening
       <code>callback</code>. <code>port</code> defaults to <strong>3535</strong>.
@@ -43,7 +43,7 @@ block page
     p.
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header
       in the response.
-    h4.res Agencies
+    h4#agencies.res Agencies
     .url
       h4 <em>GET</em> /agencies
       p.desc Returns an array of available transit agencies.
@@ -54,7 +54,7 @@ block page
       p.desc Returns an agency object for transit agency id <code>:agency</code>.
       p <strong>xml feed correspondence</strong>: none
       p <strong>sample response</strong>: <a href='/api/agencies/sf-muni'> <em>GET</em> /agencies/sf-muni</a>
-    h4.res Routes
+    h4#routes.res Routes
     .url
       h4 <em>GET</em> /agencies/:agency/routes
       p.desc.
@@ -79,7 +79,7 @@ block page
       p.
         <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes/F'> <em>GET</em>
         /agencies/sf-muni/routes/F</a>
-    h4.res Vehicles (Buses)
+    h4#vehicles.res Vehicles (Buses)
     .url
       h4 <em>GET</em> /agencies/:agency/vehicles
       p.desc.
@@ -105,7 +105,7 @@ block page
       p.
         <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes/F/vehicles'> <em>GET</em>
         /agencies/sf-muni/routes/F/vehicles</a>
-    h4.res Predictions
+    h4#predictions.res Predictions
     .url
       h4 <em>GET</em> /agencies/:agency/routes/:route/stops/:stop/predictions
       p.desc.
@@ -148,7 +148,7 @@ block page
       p.
         <strong>sample response</strong>: <a href='/api/locations/37.784825,-122.395592/predictions'> <em>GET</em>
         /locations/37.784825,-122.395592/predictions</a>
-    h4 Errors
+    h4#api-errors Errors
     p The <code>restbus</code> API can return several kinds of HTTP error status codes:
     ul
       li 404 Not Found

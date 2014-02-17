@@ -21,7 +21,7 @@
   .content {
   }
   .header {
-    margin: 80% 0 0 0;
+    margin: 75% 0 0 0;
   }
   .sidebar {
   }
@@ -58,7 +58,7 @@ div.rbcopy a:hover {
   border-bottom: 1px solid #eee;
 }
 #shell p {
-  line-height: 1.4em;
+  line-height: 1.5em;
 }
 #shell p code {
   background-color: #fff;
@@ -75,7 +75,7 @@ div.gist {
 div.warning {
   background-color: #fcf8e3;
   color: #8a6d3b;
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.6em;
   border: 1px solid #faebcc;
   border-radius: 4px;
 }
@@ -86,15 +86,21 @@ div.warning a {
 div.info {
   background-color: #d9edf7;
   color: #31708f;
-  padding: 0.1em 0.4em;
+  padding: 0.1em 0.6em;
   border: 1px solid #bce8f1;
   border-radius: 4px;
+}
+div.info a {
+  color: #245269;
+  font-weight: bold;
 }
 div.url {
   margin: 1.33em 0 0 0;
 }
 .url h4 {
   margin: 0;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
 }
 .url h4 em {
   padding-right: 0.3em;

@@ -83,6 +83,13 @@ div.warning a {
   color: #66512c;
   font-weight: bold;
 }
+div.info {
+  background-color: #d9edf7;
+  color: #31708f;
+  padding: 0.1em 0.4em;
+  border: 1px solid #bce8f1;
+  border-radius: 4px;
+}
 div.url {
   margin: 1.33em 0 0 0;
 }

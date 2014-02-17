@@ -2,11 +2,15 @@ extends layout
 
 block page
   #shell
-    h3 Usage
+    .info
+      p.
+        You have to stat the <code>restbus</code> server before you can use the <code>restbus</code>
+        <a href='#api'>API</a>. See <a href='#usage'>Usage</a> for how.
+    h3#usage Usage
     h4: code listen([port],[callback])
     p.
-      Start <code>restbus</code> passing an optional <code>port</code> and/or listening <code>callback</code>.
-      <code>port</code> defaults to <strong>3535</strong>.
+      Start the <code>restbus</code> server passing an optional <code>port</code> and/or listening
+      <code>callback</code>. <code>port</code> defaults to <strong>3535</strong>.
     p For example:
     script(src='https://gist.github.com/morganney/9015641.js')
     p Now your application can access the <code>restbus</code> API over <code>http://localhost:3535</code>.
@@ -16,16 +20,14 @@ block page
       Nevertheless, this stops <code>restbus</code> from accepting new
       connections while keeping existing ones until they are finished or time out. It's a wrapper for
       <a href='http://nodejs.org/api/net.html#net_server_close_callback'>Node.js server.close()</a>
-      that doesn't accept a callback, and can only be invoked once until you restart you application,
+      that doesn't accept a callback, and can only be invoked once until you restart your application,
       but <strong><em>you can </em></strong><code>restbus.listen()</code> after calling <code>close()</code>.
     h4: code isListening()
     p <strong><em>Again, you won't really need this</em></strong>.<sup>*</sup>
     p.
       Except maybe for testing or if you do want to <code>restbus.close()</code> for some reason and later
       see if <code>restbus</code> has stopped listening.
-    p: small <sup>*</sup> These were added purely for demonstration and are not of much use in a production environment.
-
-    h3 <code>restbus</code> API
+    h3#api <code>restbus</code> API
     .warning
       p.
         The <code>restbus</code> API is bound by the same <strong>usage limits</strong> as the
@@ -59,7 +61,7 @@ block page
         Returns an array of routes services by transit agency id <code>:agency</code>. The route objects in this
         response contain very limited information and are meant to be used for building UI &lt;select&gt;'s of
         an agencies available routes. For more detailed route information use the
-        <a href='#route-config'>endpoint below.</a>
+        <a href='#route-config'>routeconfig endpoint</a> below.
       p <strong>xml feed correspondence</strong>: command=routeList
       p.
         <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes'> <em>GET</em>
@@ -158,11 +160,13 @@ block page
       clients are encouraged to try the request until initialization is complete. You should rarely encounter this
       status code.
     p.
-      A <strong>500</strong> status is most likely some networking error when requesting data from
+      <strong>500</strong> status is most likely some networking error when requesting data from
       webservices.nextbus.com, however it could also be due to an XML parsing error. Check the <code>message</code>
       property of the error response object for more information. You should rarely, if ever, encouter this status code.
     p An error looks like:
     script(src='https://gist.github.com/morganney/9016151.js')
+    p: small <sup>*</sup> These were added purely for demonstration and are not of much use in a production environment.
     p: small.
-        <sup>&dagger;</sup> This endpoint is experimental as it relies on a NextBus Inc. data source that may be removed
-        at any time without warning or notice. Use it at your own risk.
+        <sup>&dagger;</sup> This endpoint is experimental as it relies on a
+        <a href='http://cts.cubic.com/en-us/solutions/realtimepassengerinformation/nextbus,inc/aboutus.aspx'>NextBus Inc.</a>
+        data source that may be removed at any time without warning or notice. Use it at your own risk.

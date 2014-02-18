@@ -43,6 +43,32 @@ block page
     p.
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header
       in the response.
+    h4 HATEOAS Guidelines
+    p.
+      The <code>restbus</code> API adheres to the <a href='http://en.wikipedia.org/wiki/HATEOAS'>HATEOAS</a> requirement
+      for a REST API.  As mentioned above, the only media type supported by the <code>restbus</code> API is
+      <code>application/json</code> (so I guess you could say it's more of a "JESTful" API that only supports one media
+      type, JSON). The <code>restbus</code> API establishes <strong>link relations</strong> between resources through
+      the <code>_links</code> property of each API resource (agency, route, vehicle, or prediction).
+    p The <code>_links</code> property has the following structure:
+    script(src='https://gist.github.com/morganney/9079649.js')
+    p.
+      Every <code>_links</code> relationship type <em>is</em> (self) or <em>contains</em> (to, from)
+      <strong>link objects</strong>. Link objects have the following properties:
+    ul
+      li <code>method</code>: What HTTP method to use when following the link.
+      li <code>href</code>: What URI to apply <code>method</code> to when following the link.
+      li <code>transition</code>: A description of what state transition will occur when following the link.
+      li <code>resource</code>: The kind of resource you will be transitioning to when following the link.
+      li <code>type</code>: The type of JSON response structure for the resource when following the link.
+    p.
+      Of these properties, the most useful are <code>method</code>, <code>href</code>, and <code>transition</code>. The
+      other two are of questionable utility and are there to provide context and support future use cases.
+    p Here is a full example of <code>restbus</code> API HATEOAS <code>_links</code> for an agency resource:
+    script(src='https://gist.github.com/morganney/9080063.js')
+    p.
+      From here a client can discover the rest of the API resources, without relying on the documentation below.
+      Although the documentation below is sure to help!
     h4#agencies.res Agencies
     .url
       h4 <em>GET</em> /agencies
@@ -122,7 +148,7 @@ block page
         Returns an array of predictions, one for each route:stop pair in the <code>:tuple</code> for
         agency id <code>:agency</code>. A tuple is a set of route:stop pairs separated by commas (,).
         A route:stop pair is a <code>:route</code> and <code>:stop</code> separated by a colon (:). For example,
-        F:5650, or N:6997. You can turn these two route:stop pairs into a tuple F:5650,N:6997.
+        F:5650, or N:6997. You can turn these two route:stop pairs into the tuple 'F:5650,N:6997'.
       p <strong>xml feed correspondence</strong>: command=predictionsForMultiStops
       p.
         <strong>sample response</strong>: <a href='/api/agencies/sf-muni/tuples/F:5650,N:6997/predictions'> <em>GET</em>

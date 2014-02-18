@@ -69,6 +69,15 @@ div.rbcopy a:hover {
   border-radius: 3px;
   padding: .1em .2em;
 }
+#shell li code {
+  background-color: #fff;
+  border: 1px solid #CCC;
+  font-size: 13px;
+  line-height: 19px;
+  overflow: auto;
+  border-radius: 3px;
+  padding: .1em .2em;
+}
 div.gist {
   font-size: 0.9em;
 }

@@ -32,7 +32,7 @@ block page
       p.
         The <code>restbus</code> API is bound by the same <strong>usage limits</strong> as the
         <a href='http://www.nextbus.com/xmlFeedDocs/NextBusXMLFeed.pdf'>NextBus XML feed</a>. You've been warned.
-    h4 Standard Response Headers
+    h4#standard-response-headers Standard Response Headers
     p.
       All responses include a <code>Content-Type: application/json</code> header, and optionally a
       <code>Content-Encoding: gzip</code> header provided the corresponding <code>Accept-Encoding: gzip</code>
@@ -43,17 +43,19 @@ block page
     p.
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header
       in the response.
-    h4 HATEOAS Guidelines
+    h4#hateoas HATEOAS Guidelines
     p.
       The <code>restbus</code> API adheres to the <a href='http://en.wikipedia.org/wiki/HATEOAS'>HATEOAS</a> requirement
       for a REST API.  As mentioned above, the only media type supported by the <code>restbus</code> API is
       <code>application/json</code> (so I guess you could say it's more of a "JESTful" API that only supports one media
       type, JSON). The <code>restbus</code> API establishes <strong>link relations</strong> between resources through
       the <code>_links</code> property of each API resource (agency, route, vehicle, or prediction).
-    p The <code>_links</code> property has the following structure:
+    p.
+      The <a href='http://en.wikipedia.org/wiki/Hypermedia'>hypermedia</a> <code>_links</code> property has the
+      following structure:
     script(src='https://gist.github.com/morganney/9079649.js')
     p.
-      Every <code>_links</code> relationship type <em>is</em> (self) or <em>contains</em> (to, from)
+      Every <code>_links</code> relationship type <em>is</em> (self) or <em>has</em> (to, from)
       <strong>link objects</strong>. Link objects have the following properties:
     ul
       li <code>method</code>: What HTTP method to use when following the link.
@@ -64,11 +66,11 @@ block page
     p.
       Of these properties, the most useful are <code>method</code>, <code>href</code>, and <code>transition</code>. The
       other two are of questionable utility and are there to provide context and support future use cases.
-    p Here is a full example of <code>restbus</code> API HATEOAS <code>_links</code> for an agency resource:
+    p Here is a full example of <code>restbus</code> API hypermedia <code>_links</code> for an agency resource:
     script(src='https://gist.github.com/morganney/9080063.js')
     p.
-      From here a client can discover the rest of the API resources, without relying on the documentation below.
-      Although the documentation below is sure to help!
+      A client can discover representations for all <code>restbus</code> resources via <code>_links</code>, 
+      without relying on the documentation below. Although the documentation below is sure to help!
     h4#agencies.res Agencies
     .url
       h4 <em>GET</em> /agencies

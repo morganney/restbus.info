@@ -11,6 +11,7 @@ window.addEventListener('DOMContentLoaded', function() {
   }
   xhr.onerror = function(e) {
     console.log('network error');
+    console.dir(e);
     console.dir(xhr);
   }
   xhr.send(null);

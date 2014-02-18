@@ -60,16 +60,7 @@ div.rbcopy a:hover {
 #shell p {
   line-height: 1.5em;
 }
-#shell p code {
-  background-color: #fff;
-  border: 1px solid #CCC;
-  font-size: 13px;
-  line-height: 19px;
-  overflow: auto;
-  border-radius: 3px;
-  padding: .1em .2em;
-}
-#shell li code {
+#shell p code, #shell li code {
   background-color: #fff;
   border: 1px solid #CCC;
   font-size: 13px;

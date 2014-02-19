@@ -8,10 +8,11 @@ app.set('view engine', 'jade');
 app.locals({pretty: true});
 
 // Middleware & Error Handling
-app.use(express.logger('dev'));
+app.use(express.logger());
 app.use(express.compress());
 app.use(app.router);
 app.use(function(req, res, next) {
+  // TODO: 404 view
   res.send(404);
 });
 app.use(function(err, req, res, next) {
@@ -23,6 +24,13 @@ app.use(function(err, req, res, next) {
 // Routing
 app.get('/', function(req, res) {
   res.render('index');
+});
+app.get('/robots.txt', function(req, res) {
+  res.set({
+    'Content-Type': 'text/plain',
+    'Expires': new Date("1/1/2050").toUTCString()
+  });
+  res.send(200, 'User-agent: *\nDisallow: ');
 });
 
 // Get to work

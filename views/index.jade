@@ -38,8 +38,8 @@ block page
       <code>Content-Encoding: gzip</code> header provided the corresponding <code>Accept-Encoding: gzip</code>
       request header.
     p.
-      <code>restbus</code> supports <strong>CORS</strong> by default and all API responses include an
-      <code>Acces-Control-Allow-Origin: *</code> header.
+      <code>restbus</code> supports <a href='http://www.w3.org/TR/cors/'>CORS</a> by default and all API responses
+      include an <code>Acces-Control-Allow-Origin: *</code> header.
     p.
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header
       in the response.
@@ -59,13 +59,10 @@ block page
       <strong>link objects</strong>. Link objects have the following properties:
     ul
       li <code>method</code>: What HTTP method to use when following the link.
-      li <code>href</code>: What URI to apply <code>method</code> to when following the link.
+      li <code>href</code>: What URI to perform <code>method</code> on when following the link.
       li <code>transition</code>: A description of what state transition will occur when following the link.
       li <code>resource</code>: The kind of resource you will be transitioning to when following the link.
       li <code>type</code>: The type of JSON response structure for the resource when following the link.
-    p.
-      Of these properties, the most useful are <code>method</code>, <code>href</code>, and <code>transition</code>. The
-      other two are of questionable utility and are there to provide context and support future use cases.
     p Here is a full example of <code>restbus</code> API hypermedia <code>_links</code> for an agency resource:
     script(src='https://gist.github.com/morganney/9080063.js')
     p.
@@ -86,7 +83,7 @@ block page
     .url
       h4 <em>GET</em> /agencies/:agency/routes
       p.desc.
-        Returns an array of routes services by transit agency id <code>:agency</code>. The route objects in this
+        Returns an array of routes serviced by transit agency id <code>:agency</code>. The route objects in this
         response contain very limited information and are meant to be used for building UI &lt;select&gt;'s of
         an agencies available routes. For more detailed route information use the
         <a href='#route-config'>routeconfig endpoint</a> below.
@@ -196,5 +193,5 @@ block page
     p: small <sup>*</sup> These were added purely for demonstration and are not of much use in a production environment.
     p: small.
         <sup>&dagger;</sup> This endpoint is experimental as it relies on a
-        <a href='http://cts.cubic.com/en-us/solutions/realtimepassengerinformation/nextbus,inc/aboutus.aspx'>NextBus Inc.</a>
-        data source that may be removed at any time without warning or notice. Use it at your own risk.
+        <a href='http://cts.cubic.com/en-us/solutions/realtimepassengerinformation/nextbus,inc/aboutus.aspx'>
+        NextBus Inc.</a> data source that may be removed at any time without warning or notice. Use it at your own risk.

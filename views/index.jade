@@ -51,19 +51,23 @@ block page
       type, JSON). The <code>restbus</code> API establishes <strong>link relations</strong> between resources through
       the <code>_links</code> property of each API resource (agency, route, vehicle, or prediction).
     p.
-      The <a href='http://en.wikipedia.org/wiki/Hypermedia'>hypermedia</a> <code>_links</code> property has the
+      The <a href='http://en.wikipedia.org/wiki/Hypertext'>hypertext</a> <code>_links</code> property has the
       following structure:
     script(src='https://gist.github.com/morganney/9079649.js')
     p.
       Every <code>_links</code> relationship type <em>is</em> (self) or <em>has</em> (to, from)
       <strong>link objects</strong>. Link objects have the following properties:
     ul
-      li <code>method</code>: What HTTP method to use when following the link.
-      li <code>href</code>: What URI to perform <code>method</code> on when following the link.
-      li <code>transition</code>: A description of what state transition will occur when following the link.
+      li <code>method</code>: The HTTP method to use when following the link.
+      li
+        | <code>href</code>: The URI to perform <code>method</code> on. This is the
+        | <a href='http://en.wikipedia.org/wiki/Hyperlinks'>hyperlink</a>.
+      li
+        | <code>transition</code>: A description of what state your application will transition into when
+        | following the link.
       li <code>resource</code>: The kind of resource you will be transitioning to when following the link.
       li <code>type</code>: The type of JSON response structure for the resource when following the link.
-    p Here is a full example of <code>restbus</code> API hypermedia <code>_links</code> for an agency resource:
+    p Here is a full example of <code>restbus</code> API hypertext <code>_links</code> for an agency resource:
     script(src='https://gist.github.com/morganney/9080063.js')
     p.
       A client can discover representations for all <code>restbus</code> resources via <code>_links</code>,

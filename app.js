@@ -5,7 +5,7 @@ var express = require('express'),
 // Configuration
 app.enable('trust proxy');
 app.set('view engine', 'jade');
-app.locals({pretty: true});
+//app.locals({pretty: true});
 
 // Middleware & Error Handling
 app.use(express.logger());
@@ -31,6 +31,9 @@ app.get('/robots.txt', function(req, res) {
     'Expires': new Date("1/1/2050").toUTCString()
   });
   res.send(200, 'User-agent: *\nDisallow: ');
+});
+app.get('/_links/rel/full', function(req, res) {
+  res.render('full');
 });
 
 // Get to work

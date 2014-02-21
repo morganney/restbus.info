@@ -39,21 +39,28 @@ block page
       request header.
     p.
       <code>restbus</code> supports <a href='http://www.w3.org/TR/cors/'>CORS</a> by default and all API responses
-      include an <code>Acces-Control-Allow-Origin: *</code> header.
+      include an <code>Acces-Control-Allow-Origin: *</code> header. Any CORS preflight request will return the other
+      <code>Access-Control-Allow-*</code> headers.
     p.
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header
       in the response.
     h4#hateoas HATEOAS Guidelines
     p.
       The <code>restbus</code> API adheres to the <a href='http://en.wikipedia.org/wiki/HATEOAS'>HATEOAS</a> requirement
-      for a REST API.  As mentioned above, the only media type supported by the <code>restbus</code> API is
-      <code>application/json</code> (so I guess you could say it's more of a "JESTful" API that only supports one media
-      type, JSON). The <code>restbus</code> API establishes <strong>link relations</strong> between resources through
-      the <code>_links</code> property of each API resource (agency, route, vehicle, or prediction).
-    p.
-      The <a href='http://en.wikipedia.org/wiki/Hypertext'>hypertext</a> <code>_links</code> property has the
-      following structure:
+      of <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven'>REST</a>. Each resource has a
+      <code>restbus</code> <a href='http://en.wikipedia.org/wiki/Hypertext'>hypertext</a> <code>_links</code>
+      property that was inspired by mnot's
+      <a href='http://www.mnot.net/blog/2011/11/25/linking_in_json'>linking in JSON</a> article, and is structured
+      closely to the <a href='http://tools.ietf.org/html/rfc5988'>RFC 5988 specification for Web Linking</a>.
+      Very similiar to a JSON serialization of Web Links that are later grouped into
+      the "state transitions" described below.
+    p The <code>_links</code> property has the following structure:
     script(src='https://gist.github.com/morganney/9079649.js')
+    p.
+      Some of the <strong>link object</strong> attributes were taken from other linking format specifications (http://tools.ietf.org/html/rfc6690)
+      to fill gaps in 5988, but all <strong>link relation</strong> types are from the <a href='http://tools.ietf.org/html/rfc5988#section-6.2.2'>initial registry contents</a>
+      of RFC 5988, with the exception of one <a href='http://tools.ietf.org/html/rfc5988#section-4.2'>extension relation type</a>
+      "<a href='/_links/rel/full'>full</a>".
     p.
       Every <code>_links</code> relationship type <em>is</em> (self) or <em>has</em> (to, from)
       <strong>link objects</strong>. Link objects have the following properties:

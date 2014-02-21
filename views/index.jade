@@ -218,9 +218,11 @@ block page
     p The <code>restbus</code> API can return several kinds of HTTP error status codes:
     ul
       li 404 Not Found
+      li 405 Method Not Allowed
       li 500 Internal Server Error
       li 503 Service Unavailable
     p <strong>404</strong> status indicates an unsupported URL was requested. Check your URL structure.
+    p <strong>405</strong> status indicates a client tried to use an unsupported HTTP method.
     p.
       <strong>503</strong> status corresponds to an "initializing" error response from the NextBus XML feed, and
       clients are encouraged to try the request until initialization is complete. You should rarely encounter this

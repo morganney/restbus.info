@@ -45,35 +45,65 @@ block page
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header
       in the response.
     h4#hateoas HATEOAS Guidelines
+    .warning
+      p.
+        The <code>restbus</code> API does not adhere to any IETF standard for general resource linking because there
+        is none! Moreover, <code>restbus</code> does not use any of the many popular JSON linking strategies (or
+        their associated media types) like <a href='http://tools.ietf.org/html/draft-kelly-json-hal-06'>HAL</a>,
+        <a href='http://json-ld.org/'>JSON-LD</a>, <a href='http://json-schema.org/'>JSON-Schema</a> etc., because they
+        don't appear to be on the IETF <a href='https://www.ietf.org/rfc/rfc2026.txt'>Standards Track</a> for
+        acceptance (yet).
+      p.
+        Therefore, the <code>restbus</code> API approach to JSON linking strives to meet
+        <a href='http://tools.ietf.org/html/rfc5988'>RFC 5988 Web Linking</a> specifications as much as possible.
     p.
       The <code>restbus</code> API adheres to the <a href='http://en.wikipedia.org/wiki/HATEOAS'>HATEOAS</a> requirement
       of <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven'>REST</a>. Each resource has a
-      <code>restbus</code> <a href='http://en.wikipedia.org/wiki/Hypertext'>hypertext</a> <code>_links</code>
-      property that was inspired by mnot's
+      <code>restbus</code> <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718'>
+      hypertext</a> <code>_links</code> property that was influenced by mnot's
       <a href='http://www.mnot.net/blog/2011/11/25/linking_in_json'>linking in JSON</a> article, and is structured
       closely to the <a href='http://tools.ietf.org/html/rfc5988'>RFC 5988 specification for Web Linking</a>.
-      Very similiar to a JSON serialization of Web Links that are later grouped into
-      the "state transitions" described below.
+      It's very similiar to a JSON serialization of <a href='http://tools.ietf.org/html/rfc5988#section-3'>Web Links</a>
+      that are later grouped into the "state transitions" described below.
     p The <code>_links</code> property has the following structure:
     script(src='https://gist.github.com/morganney/9079649.js')
+    h5#link-object Link Object
     p.
-      Some of the <strong>link object</strong> attributes were taken from other linking format specifications (http://tools.ietf.org/html/rfc6690)
-      to fill gaps in 5988, but all <strong>link relation</strong> types are from the <a href='http://tools.ietf.org/html/rfc5988#section-6.2.2'>initial registry contents</a>
-      of RFC 5988, with the exception of one <a href='http://tools.ietf.org/html/rfc5988#section-4.2'>extension relation type</a>
-      "<a href='/_links/rel/full'>full</a>".
-    p.
-      Every <code>_links</code> relationship type <em>is</em> (self) or <em>has</em> (to, from)
-      <strong>link objects</strong>. Link objects have the following properties:
+      Every <code>_links</code> "state transition" key <em>is</em> (self) or <em>has</em> (to, from) link objects
+      with attributes describing the link's target resource. <code>restbus</code> link objects use the following
+      attributes as defined directly from <a href='http://tools.ietf.org/html/rfc5988#section-5.4'>RFC 5988 Target
+      Attributes</a>:
     ul
-      li <code>method</code>: The HTTP method to use when following the link.
+      li <code>type</code>: A hint at the expected media type of the target resource.
+      li <code>rel</code>: The <a href='#link-relation'>link relation</a> between resources.
+      li <code>title</code>: A human readable description of the target resource.
+    p In addition, link objects also use the following attributes:
+    ul
       li
-        | <code>href</code>: The URI to perform <code>method</code> on. This is the
-        | <a href='http://en.wikipedia.org/wiki/Hyperlinks'>hyperlink</a>.
+        | <code>href</code>: The URI to follow when dereferencing the link.
+        | This is the <a href='http://en.wikipedia.org/wiki/Hyperlinks'>hyperlink</a>, an analogue to
+        | a web link's <a href='http://tools.ietf.org/html/rfc5988#section-5.1'>Target IRI</a> (URI).
       li
-        | <code>transition</code>: A description of what state your application will transition into when
-        | following the link.
-      li <code>resource</code>: The kind of resource you will be transitioning to when following the link.
-      li <code>type</code>: The type of JSON response structure for the resource when following the link.
+        | <code>rt</code>: The target's resource type, as
+        | <a href='http://tools.ietf.org/html/rfc6690#section-3.1'>defined by RFC 6690</a>.
+    p.
+      Clients may perform an <a href='http://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html#sec9.2'>
+      HTTP OPTIONS request</a> and inspect the HTTP
+      <a href='http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.7'>Allow</a> response header for supported
+      HTTP methods. Currently, <code>restbus</code> only supports HTTP GET requests.
+    p.
+      If the <code>restbus</code> API ever supports media types other than <code>application/json</code>, and/or HTTP
+      methods other than GET, link objects will add support for a "hints" attribute as specified by
+      <a href='http://tools.ietf.org/html/draft-nottingham-link-hint-00'>HTTP Link Hints</a>.
+    h5#link-relation Link Relation
+    p.
+      Every link object has one <code>rel</code> attribute.
+      All link relation values are taken directly from RFC 5988's
+      <a href='http://tools.ietf.org/html/rfc5988#section-6.2.2'>initial registry contents</a>, with the exception
+      of one <a href='http://tools.ietf.org/html/rfc5988#section-4.2'>extension relation type</a>,
+      "<a href='/_links/rel/full'>full</a>", which was borrowed from
+      <a href='http://json-schema.org/latest/json-schema-hypermedia.html#rfc.section.5.2'>JSON Hyper-Schema</a>.
+
     p Here is a full example of <code>restbus</code> API hypertext <code>_links</code> for an agency resource:
     script(src='https://gist.github.com/morganney/9080063.js')
     p.

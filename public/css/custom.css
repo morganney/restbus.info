@@ -12,6 +12,9 @@
 .header .nav-item:first-child {
   margin-bottom: 1em;
 }
+.header .nav-item:last-child {
+  margin-left: 0.3em;
+}
 .header .nav-item a {
   margin-top: 0;
 }
@@ -56,6 +59,9 @@ div.rbcopy a:hover {
   color: #aaa;
   padding-bottom: 0.2em;
   border-bottom: 1px solid #eee;
+}
+#shell h5 {
+  font-size: 1em;
 }
 #shell p {
   line-height: 1.5em;

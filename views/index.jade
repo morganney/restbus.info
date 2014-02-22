@@ -48,19 +48,20 @@ block page
     .info
       p.
         The <code>restbus</code> API does not adhere to any IETF standard for general resource linking because there
-        is none! Moreover, <code>restbus</code> does not use any of the many popular JSON linking strategies (or
+        is none. Moreover, <code>restbus</code> does not use any of the many popular JSON linking strategies (or
         their associated media types) like <a href='http://tools.ietf.org/html/draft-kelly-json-hal-06'>HAL</a>,
         <a href='http://json-ld.org/'>JSON-LD</a>, <a href='http://json-schema.org/'>JSON-Schema</a> etc., because they
         don't appear to be on the IETF <a href='https://www.ietf.org/rfc/rfc2026.txt'>Standards Track</a> for
         acceptance (yet).
       p.
-        Therefore, the <code>restbus</code> API approach to JSON linking strives to meet
+        Therefore, the <code>restbus</code> approach to JSON linking strives to meet
         <a href='http://tools.ietf.org/html/rfc5988'>RFC 5988 Web Linking</a> specifications as much as possible.
     p.
-      The <code>restbus</code> API adheres to the <a href='http://en.wikipedia.org/wiki/HATEOAS'>HATEOAS</a> requirement
-      of <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven'>REST</a>. Each resource has a
-      <code>restbus</code> <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718'>
-      hypertext</a> <code>_links</code> property that was influenced by mnot's
+      The <code>restbus</code> API adheres to the
+      <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven'>HATEOAS requirement of REST</a>.
+      Each resource has a <code>restbus</code>
+      <a href='http://roy.gbiv.com/untangled/2008/rest-apis-must-be-hypertext-driven#comment-718'>hypertext</a>
+      <code>_links</code> property that was influenced by mnot's
       <a href='http://www.mnot.net/blog/2011/11/25/linking_in_json'>linking in JSON</a> article, and is structured
       closely to the <a href='http://tools.ietf.org/html/rfc5988'>RFC 5988 specification for Web Linking</a>.
       It's very similiar to a JSON serialization of <a href='http://tools.ietf.org/html/rfc5988#section-3'>Web Links</a>
@@ -107,8 +108,8 @@ block page
     p Here is a full example of <code>restbus</code> API hypertext <code>_links</code> for an agency resource:
     script(src='https://gist.github.com/morganney/9080063.js')
     p.
-      A client can discover representations for all <code>restbus</code> resources via <code>_links</code>,
-      without relying on the documentation below. Although the documentation below is sure to help!
+      A client can discover representations for all <code>restbus</code> resources via <code>_links</code>
+      without relying on the documentation below, although the documentation below is sure to help.
     h4#agencies.res Agencies
     .url
       h4 <em>GET</em> /agencies

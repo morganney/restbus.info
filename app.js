@@ -3,23 +3,26 @@ var express = require('express'),
     app = express();
 
 // Configuration
-app.enable('trust proxy');
-app.set('view engine', 'jade');
-//app.locals({pretty: true});
-
-// Middleware & Error Handling
-app.use(express.logger());
-app.use(express.compress());
-app.use(app.router);
-app.use(function(req, res, next) {
-  // TODO: 404 view
-  res.send(404);
+app.configure('development', function() {
+  app.use(express.logger('dev'));
+  app.locals({pretty: true});
 });
-app.use(function(err, req, res, next) {
-  console.error(err.stack);
-  res.send(500);
+app.configure('production', function() {
+  app.use(express.logger());
 });
-
+app.configure('all', function() {
+  app.enable('trust proxy');
+  app.set('view engine', 'jade');
+  app.use(express.compress());
+  app.use(app.router);
+  app.use(function(req, res, next) {
+    res.status(404).render('notfound');
+  });
+  app.use(function(err, req, res, next) {
+    console.error(err.stack);
+    res.send(500);
+  });
+});
 
 // Routing
 app.get('/', function(req, res) {

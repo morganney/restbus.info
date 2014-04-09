@@ -7,7 +7,7 @@ block page
         You have to start the <code>restbus</code> <a href='#server'>server</a> before you can use the
         <code>restbus</code> <a href='#api'>API</a>. See <a href='#listen'><code>listen()</code></a> for details.
     h3#server <code>restbus</code> Server
-    h4#listen: code listen([port],[callback])
+    h4#listen: code listen([port|callback],[callback])
     p.
       Start the <code>restbus</code> server passing an optional <code>port</code> and/or listening
       <code>callback</code>. <code>port</code> defaults to <strong>3535</strong>.
@@ -39,7 +39,7 @@ block page
       request header.
     p.
       <code>restbus</code> supports <a href='http://www.w3.org/TR/cors/'>CORS</a> by default and all API responses
-      include an <code>Acces-Control-Allow-Origin: *</code> header. Any CORS preflight request will return the other
+      include an <code>Access-Control-Allow-Origin: *</code> header. Any CORS preflight request will return the other
       <code>Access-Control-Allow-*</code> headers.
     p.
       All <strong>successful</strong> requests include an <strong>HTTP/1.1 200 OK</strong> status header

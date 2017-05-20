@@ -14,6 +14,10 @@ block page
     p For example:
     script(src='https://gist.github.com/morganney/9015641.js')
     p Now your application can access the <code>restbus</code> API over <code>http://localhost:3535</code>.
+    h4#middleware: code middleware()
+    p.
+      Returns the <code>restbus</code> API as <a href="https://expressjs.com/en/guide/using-middleware.html">express middleware</a>.
+      See the example in <a href='#listen'><code>listen()</code></a> for usage.
     h4: code close()
     p <strong><em>You won't really need this</em></strong>.<sup>*</sup>
     p.

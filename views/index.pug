@@ -124,7 +124,7 @@ block page
       h4 <em>GET</em> /agencies/:agency
       p.desc Returns an agency object for transit agency id <code>:agency</code>.
       p <strong>xml feed correspondence</strong>: none
-      p <strong>sample response</strong>: <a href='/api/agencies/sf-muni'> <em>GET</em> /agencies/sf-muni</a>
+      p <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox'> <em>GET</em> /agencies/sfmuni-sandbox</a>
     h4#routes.res Routes
     .url
       h4 <em>GET</em> /agencies/:agency/routes
@@ -135,8 +135,8 @@ block page
         <a href='#route-config'>routeconfig endpoint</a> below.
       p <strong>xml feed correspondence</strong>: command=routeList
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes'> <em>GET</em>
-        /agencies/sf-muni/routes</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/routes'> <em>GET</em>
+        /agencies/sfmuni-sandbox/routes</a>
     .url#route-config
       h4 <em>GET</em> /agencies/:agency/routes/:route
       p.desc.
@@ -148,8 +148,8 @@ block page
         "Command routeConfig", and view the sample response below.
       p <strong>xml feed correspondence</strong>: command=routeConfig
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes/F'> <em>GET</em>
-        /agencies/sf-muni/routes/F</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/routes/F'> <em>GET</em>
+        /agencies/sfmuni-sandbox/routes/F</a>
     h4#vehicles.res Vehicles (Buses)
     .url
       h4 <em>GET</em> /agencies/:agency/vehicles
@@ -157,16 +157,16 @@ block page
         Returns an array of all vehicles (buses) operated by transit agency id <code>:agency</code>.
       p <strong>xml feed correspondence</strong>: none
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/vehicles'> <em>GET</em>
-        /agencies/sf-muni/vehicles</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/vehicles'> <em>GET</em>
+        /agencies/sfmuni-sandbox/vehicles</a>
     .url
       h4 <em>GET</em> /agencies/:agency/vehicles/:vehicle
       p.desc.
         Returns a vehicle object for transit agency id <code>:agency</code> and vehicle id <code>:vehicle</code>.
       p <strong>xml feed correspondence</strong>: none
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/vehicles/1074'> <em>GET</em>
-        /agencies/sf-muni/vehicles/1074</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/vehicles/1074'> <em>GET</em>
+        /agencies/sfmuni-sandbox/vehicles/1074</a>
     .url
       h4 <em>GET</em> /agencies/:agency/routes/:route/vehicles
       p.desc.
@@ -174,8 +174,8 @@ block page
         <code>:route</code>.
       p <strong>xml feed correspondence</strong>: command=vehicleLocations
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes/F/vehicles'> <em>GET</em>
-        /agencies/sf-muni/routes/F/vehicles</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/routes/F/vehicles'> <em>GET</em>
+        /agencies/sfmuni-sandbox/routes/F/vehicles</a>
     h4#predictions.res Predictions
     .url
       h4 <em>GET</em> /agencies/:agency/routes/:route/stops/:stop/predictions
@@ -185,8 +185,8 @@ block page
         The array of values in sorted in ascending order by the 'epochTime' property.
       p <strong>xml feed correspondence</strong>: command=predictions
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/routes/F/stops/5650/predictions'> <em>GET</em>
-        /agencies/sf-muni/routes/F/stop/5650/predictions</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/routes/F/stops/5650/predictions'> <em>GET</em>
+        /agencies/sfmuni-sandbox/routes/F/stop/5650/predictions</a>
     .url
       h4 <em>GET</em> /agencies/:agency/tuples/:tuple/predictions
       p.desc.
@@ -196,8 +196,8 @@ block page
         F:5650, or N:6997. You can turn these two route:stop pairs into the tuple 'F:5650,N:6997'.
       p <strong>xml feed correspondence</strong>: command=predictionsForMultiStops
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/tuples/F:5650,N:6997/predictions'> <em>GET</em>
-        /agencies/sf-muni/tuples/F:5650,N:6997/predictions</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/tuples/F:5650,N:6997/predictions'> <em>GET</em>
+        /agencies/sfmuni-sandbox/tuples/F:5650,N:6997/predictions</a>
     .url
       h4 <em>GET</em> /agencies/:agency/stops/:code/predictions
       p.desc.
@@ -205,8 +205,8 @@ block page
         <code>:code</code> for agency id <code>:agency</code>. <em>Not all transit agencies use stop codes</em>.
       p <strong>xml feed correspondence</strong>: command=predictionsForMultiStops (replaced 'stopId' with 'code')
       p.
-        <strong>sample response</strong>: <a href='/api/agencies/sf-muni/stops/15650/predictions'> <em>GET</em>
-        /agencies/sf-muni/stops/15650/predictions</a>
+        <strong>sample response</strong>: <a href='/api/agencies/sfmuni-sandbox/stops/15650/predictions'> <em>GET</em>
+        /agencies/sfmuni-sandbox/stops/15650/predictions</a>
     .url
       h4 <em>GET</em> /locations/:latlon/predictions<sup>&dagger;</sup>
       p.desc.

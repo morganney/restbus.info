@@ -33,7 +33,27 @@ app.get('/robots.txt', function(req, res) {
 app.get('/_links/rel/full', function(req, res) {
   res.render('full');
 });
-app.use('/api', restbus.middleware())
+app.use('/api', (req, res, next) => {
+  const demo = [
+    '/agencies',
+    '/agencies/omnitrans',
+    '/agencies/omnitrans/routes',
+    '/agencies/omnitrans/routes/1',
+    '/agencies/omnitrans/vehicles',
+    '/agencies/omnitrans/routes/1/vehicles',
+    '/agencies/omnitrans/vehicles/1347',
+    '/agencies/omnitrans/routes/1/stops/5303/predictions',
+    '/agencies/omnitrans/tuples/1:5303,2:5423/predictions',
+    '/agencies/omnitrans/stops/5303/predictions',
+    '/locations/37.784825,-122.395592/predictions'
+  ]
+
+  if (demo.includes(req.url)) {
+    return next()
+  }
+
+  return res.status(403).json({ message: 'Forbidden by Restbus Demo.' })
+}, restbus.middleware());
 
 // Error Handling
 app.use(function(req, res, next) {

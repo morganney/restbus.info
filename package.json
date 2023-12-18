@@ -4,14 +4,15 @@
   "description": "The restbus.info website.",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "dev": "node --watch app.js"
   },
   "dependencies": {
     "compression": "1.7.4",
     "errorhandler": "1.5.1",
-    "express": "4.17.1",
+    "express": "4.18.2",
     "morgan": "1.9.1",
-    "pug": "2.0.4",
-    "restbus": "^2.0.3"
+    "pug": "3.0.2",
+    "restbus": "^2.2.0"
   }
 }

@@ -2,13 +2,16 @@
   "name": "restbus.info",
   "version": "0.0.0",
   "description": "Documentation website for the npm restbus package.",
+  "type": "module",
   "private": true,
   "scripts": {
-    "prettier": "prettier -w index.html full.html"
+    "prettier": "prettier -w index.html full.html",
+    "build": "vite build && cp full.html dist"
   },
   "devDependencies": {
     "prettier": "^3.1.1",
-    "vite": "^5.0.10"
+    "vite": "^5.0.10",
+    "vite-plugin-html": "^3.2.1"
   },
   "prettier": {
     "printWidth": 119

@@ -1,18 +1,16 @@
 {
   "name": "restbus.info",
   "version": "0.0.0",
-  "description": "The restbus.info website.",
+  "description": "Documentation website for the npm restbus package.",
   "private": true,
   "scripts": {
-    "start": "node app.js",
-    "dev": "node --watch app.js"
+    "prettier": "prettier -w index.html full.html"
   },
-  "dependencies": {
-    "compression": "1.7.4",
-    "errorhandler": "1.5.1",
-    "express": "4.18.2",
-    "morgan": "1.9.1",
-    "pug": "3.0.2",
-    "restbus": "^2.2.0"
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "vite": "^5.0.10"
+  },
+  "prettier": {
+    "printWidth": 119
   }
 }
